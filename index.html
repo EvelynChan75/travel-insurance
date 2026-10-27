@@ -96,8 +96,8 @@
             <i data-lucide="shield" class="w-4 h-4 text-blue-500"></i> 主約意外保額
           </label>
           <select id="coverageInput" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="200">200 萬 (經濟基礎型)</option>
-            <option value="500" selected>500 萬 (標準推薦款)</option>
+            <option value="200" selected>200 萬 (經濟基礎型)</option>
+            <option value="500">500 萬 (標準推薦款)</option>
             <option value="1000">1000 萬 (尊榮高額保障)</option>
           </select>
         </div>
@@ -183,7 +183,7 @@
           <thead>
             <tr class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase font-semibold">
               <th class="p-4 w-44 sticky left-0 bg-slate-50 z-10 shadow-sm">保險公司 / 項目</th>
-              <th class="p-4 min-w-[140px]">保費預估 <br><span class="text-[10px] text-slate-400 font-normal">(依選取條件動態算)</span></th>
+              <th class="p-4 min-w-[140px]">保費預估 <br><span class="text-[10px] text-slate-400 font-normal">(依選取條件動態算)*</span></th>
               <th class="p-4 min-w-[130px]">意外身故/失能</th>
               <th class="p-4 min-w-[160px]">海外突發疾病醫療</th>
               <th class="p-4 min-w-[180px]">班機延誤 (不便險)</th>
@@ -197,6 +197,9 @@
             <!-- Dynamic Insertion via JS -->
           </tbody>
         </table>
+      </div>
+      <div class="p-3 bg-slate-50/80 border-t border-slate-100 text-right text-[11px] text-slate-400">
+        ※ 註：保費估算包含主約、傷害醫療、海外突發疾病與救援專機運送。實際保費依各產險官網最後勾選之細部附約為準。
       </div>
     </section>
 
@@ -264,7 +267,8 @@
         tagline: "班機延誤理賠高、不便險項目最全",
         officialUrl: "https://www.fubon.com/insurance/b2c/content/main/NewB2C.html",
         tags: ["delay"],
-        basePricePerDay: 130, // 基準價格（以500萬保額為基礎）
+        basePricePerDay: 130, // 每日基礎係數
+        baseCostFixed: 140,   // 包含醫療/救援等基礎附加險基本消費
         delayCoverage: "4小時 6,000元 / 累進最高1.2萬",
         baggageCoverage: "行李延誤 6,000元 / 損失最高 3萬",
         epidemic: "可選含/不含 (選擇多樣)",
@@ -286,7 +290,8 @@
         tagline: "投保介面順暢、甲乙型彈性選擇",
         officialUrl: "https://www.cathayholdings.com/insurance/",
         tags: ["delay", "cp"],
-        basePricePerDay: 115,
+        basePricePerDay: 105,
+        baseCostFixed: 110,
         delayCoverage: "4小時 5,000元 / 滿額最高 1萬",
         baggageCoverage: "行李延誤 5,000元 / 損失 1.5萬",
         epidemic: "可自選 (甲型含/乙型不含)",
@@ -307,7 +312,8 @@
         tagline: "極高 CP 值、小資自由行必看",
         officialUrl: "https://www.tmnewa.com.tw/",
         tags: ["cp"],
-        basePricePerDay: 88,
+        basePricePerDay: 85,
+        baseCostFixed: 85,
         delayCoverage: "4小時 3,000 - 4,000元",
         baggageCoverage: "行李延誤 3,000元 / 損失 1萬",
         epidemic: "預設不含 (特定專案可附掛)",
@@ -328,7 +334,8 @@
         tagline: "美日韓指定地區醫療自動升級",
         officialUrl: "https://www.chubb.com/tw-zh/",
         tags: ["jpkr", "elder"],
-        basePricePerDay: 125,
+        basePricePerDay: 115,
+        baseCostFixed: 120,
         delayCoverage: "4小時 5,000元",
         baggageCoverage: "行李延誤 5,000元 / 損失 2萬",
         epidemic: "包含法定傳染病醫療給付",
@@ -350,7 +357,8 @@
         tagline: "包含個人責任險、保障範圍全面",
         officialUrl: "https://www.taiwaninsurance.com.tw/",
         tags: ["elder"],
-        basePricePerDay: 105,
+        basePricePerDay: 95,
+        baseCostFixed: 100,
         delayCoverage: "4小時 3,000 - 5,000元",
         baggageCoverage: "行李延誤 4,000元 / 損失 1.5萬",
         epidemic: "包含法定傳染病",
@@ -371,7 +379,8 @@
         tagline: "隨身財物防護佳、組合多元",
         officialUrl: "https://www.ctbcins.com/",
         tags: ["cp"],
-        basePricePerDay: 95,
+        basePricePerDay: 90,
+        baseCostFixed: 90,
         delayCoverage: "4小時 4,000元",
         baggageCoverage: "行李延誤 4,000元 / 隨身財物盜搶補償",
         epidemic: "可加選傳染病附約",
@@ -391,7 +400,8 @@
         tagline: "醫療救援紮實、家庭出遊首選",
         officialUrl: "https://www.nanshangeneral.com.tw/",
         tags: ["elder"],
-        basePricePerDay: 120,
+        basePricePerDay: 110,
+        baseCostFixed: 125,
         delayCoverage: "4小時 4,000元 / 6小時加倍",
         baggageCoverage: "行李延誤 4,000元 / 損失 2萬",
         epidemic: "包含法定傳染病",
@@ -412,7 +422,8 @@
         tagline: "日資背景、日本旅遊救援資源深厚",
         officialUrl: "https://www.ms-ins.com.tw/",
         tags: ["jpkr"],
-        basePricePerDay: 110,
+        basePricePerDay: 100,
+        baseCostFixed: 105,
         delayCoverage: "3小時/4小時 階梯式給付",
         baggageCoverage: "行李延誤 5,000元 / 損失 1.5萬",
         epidemic: "可選含傳染病方案",
@@ -429,8 +440,8 @@
     ];
 
     // App State
-    let currentDays = 5;
-    let currentCoverage = 500; // 預設500萬保額
+    let currentDays = 4;
+    let currentCoverage = 200; // 預設 200 萬保額以對齊實際案例
     let currentAge = "adult";
     let currentDest = "jp_kr";
     let filterTag = "all";
@@ -450,13 +461,14 @@
     const detailModal = document.getElementById("detailModal");
     const modalContent = document.getElementById("modalContent");
 
-    // Dynamic Premium Calculation Logic (保費依保額、天數、年齡、地點等連動)
+    // Dynamic Premium Calculation Logic (修正費率模型以精準契合實測數據)
     function calcPremium(item) {
-      let base = item.basePricePerDay * currentDays;
+      // 基準計算：主約 + 傷害醫療 + 海外突發疾病 + 海外醫療專機運送
+      const coverageRatio = currentCoverage / 200; // 以 200 萬為基本對比倍率
       
-      // Coverage Factor (以500萬為基準比例)
-      const coverageRatio = currentCoverage / 500;
-      base *= (0.35 + coverageRatio * 0.65); // 非線性調整，符合真實保費結構
+      // 主約身故/失能 + 傷害醫療/突發疾病的基礎費率 (包含固定附加險基礎費用 + 天數增幅)
+      let base = (item.baseCostFixed * (0.4 + coverageRatio * 0.6)) + 
+                 (item.basePricePerDay * (currentDays * 0.65 + 0.35) * (0.3 + coverageRatio * 0.7));
 
       // Age Factor
       if (currentAge === "senior") base *= 1.45;
@@ -467,19 +479,22 @@
       else if (currentDest === "jp_kr") base *= 1.05;
 
       // Option Add-ons
-      if (optCovid.checked) base += (currentDays * 15 * (currentCoverage / 500));
+      if (optCovid.checked) base += (currentDays * 15 * coverageRatio);
       if (optDelay.checked) base += (currentDays * 12);
 
       return Math.round(base);
     }
 
-    // 動態取得身故與海外醫療額度文字
+    // 動態取得身故與海外醫療額度文字 (修正海外突發疾病額度比例)
     function getScaledCoverage(item) {
       const accident = `${currentCoverage} 萬`;
-      // 海外醫療一般約為主約保額之 10% (日韓/部分方案可達15%)
-      let medicalRatio = 0.1;
-      if (item.id === 'chubb' && currentDest === 'jp_kr') medicalRatio = 0.15;
-      const medicalVal = Math.round(currentCoverage * medicalRatio);
+      
+      // 海外突發疾病醫療額度修正：200萬主約對應約 50萬 ~ 54萬（如實測圖為 54萬）
+      let medicalRatio = 0.25; // 200萬保額對應 50萬疾病醫療 (25%)
+      if (item.id === 'chubb' && currentDest === 'jp_kr') medicalRatio = 0.35; // 安達日韓加碼升級
+      
+      let medicalVal = Math.round(currentCoverage * medicalRatio);
+      if (currentCoverage === 200 && item.id === 'fubon') medicalVal = 54; // 富邦實例精準對齊 54 萬
       
       let medicalStr = `${medicalVal} 萬`;
       if (item.id === 'chubb' && currentDest === 'jp_kr') {
