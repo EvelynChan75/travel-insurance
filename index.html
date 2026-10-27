@@ -265,7 +265,8 @@
         id: "fubon",
         name: "富邦產險",
         tagline: "班機延誤理賠高、不便險項目最全",
-        officialUrl: "https://direct.fubonlife.com.tw/m/qta/travelaccident?cpm_src=google&cpm_med=cpc&cpm_cam=sem_qta_brand_m&gad_source=1&gad_campaignid=17356349278&gbraid=0AAAAAoeanYq9AeWAZm2LVzrvVtjXgQL8L&gclid=CjwKCAjw9PvWBhAxEiwAddzYyRLXODT9UOu0r20JCVNrdYYJshHgjPflfh-qhAQsgqgTHogZgEQZoxoCr_8QAvD_BwE#calculate",
+        officialUrl: "https://www.fubon.com/insurance/b2c/content/prod_travel/index1.html",
+        fallbackUrl: "https://b2c.518fb.com/B2CFubonTP/step1",
         tags: ["delay"],
         basePricePerDay: 130, // 每日基礎係數
         baseCostFixed: 140,   // 包含醫療/救援等基礎附加險基本消費
@@ -652,12 +653,23 @@
           </div>
 
           <!-- Direct Link Banner inside Modal -->
-          <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl flex items-center justify-between">
-            <div class="text-xs text-blue-900">準備好投保了嗎？點擊前往官方試算與投保頁面</div>
-            <a href="${item.officialUrl}" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition inline-flex items-center gap-1 shadow-xs shrink-0">
-              <span>前往官網投保</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            </a>
+          <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="text-xs text-blue-900">
+              <div class="font-bold">準備好投保了嗎？點擊前往官方試算與投保頁面</div>
+              ${item.fallbackUrl ? `<div class="text-[11px] text-blue-700 mt-0.5">如官網主連結無法載入，可點擊「備用連結」直接進入投保畫面</div>` : ''}
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="${item.officialUrl}" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition inline-flex items-center gap-1 shadow-xs">
+                <span>前往官網投保</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+              ${item.fallbackUrl ? `
+                <a href="${item.fallbackUrl}" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-slate-800 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold transition inline-flex items-center gap-1 shadow-xs">
+                  <span>備用連結</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              ` : ''}
+            </div>
           </div>
 
           <!-- Pros & Cons -->
