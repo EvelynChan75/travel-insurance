@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海外旅平險與不便險比較器 | 2026 8大產險速查評比</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Font: Inter -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    /* Custom Scrollbar for matrix table */
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-16">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center space-x-2 bg-blue-500/30 px-3 py-1 rounded-full text-xs font-medium text-blue-100 mb-2 border border-blue-400/30">
+            <i data-lucide="shield-check" class="w-4 h-4 text-blue-300"></i>
+            <span>2026 最新產險方案資料庫</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">海外旅平險與不便險 評比試算 App</h1>
+          <p class="text-blue-200 text-sm mt-1">精選 8 大知名產險公司，專為國人出國旅遊打造的智慧比較與保費估算工具</p>
+        </div>
+        <div class="flex items-center space-x-3 text-xs sm:text-sm">
+          <div class="bg-white/10 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-center">
+            <div class="text-xs text-blue-200">收錄保險公司</div>
+            <div class="font-bold text-lg">8 家</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-center">
+            <div class="text-xs text-blue-200">更新時間</div>
+            <div class="font-bold text-lg">2026 Q1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-8">
+
+    <!-- 1. Interactive Travel Days & Calculator Section -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7">
+      <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+        <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl">
+          <i data-lucide="calculator" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">行程條件與試算參數設定</h2>
+          <p class="text-xs text-slate-500">調整出發天數、目的地與個人需求，即時估算 8 家產險保費</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Trip Duration -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <label class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+              <i data-lucide="calendar" class="w-4 h-4 text-blue-500"></i> 旅遊天數
+            </label>
+            <span id="daysDisplay" class="text-base font-extrabold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-100">5 天</span>
+          </div>
+          <input type="range" id="daysInput" min="1" max="30" value="5" class="w-full accent-blue-600 h-2 bg-slate-200 rounded-lg cursor-pointer">
+          <div class="flex justify-between text-[11px] text-slate-400">
+            <span>1 天</span>
+            <span>15 天</span>
+            <span>30 天</span>
+          </div>
+        </div>
+
+        <!-- Age Selection -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+            <i data-lucide="user" class="w-4 h-4 text-blue-500"></i> 被保人年齡層
+          </label>
+          <select id="ageInput" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="adult">成人 (20 - 64 歲)</option>
+            <option value="child">孩童/未成年 (未滿 20 歲)</option>
+            <option value="senior">銀髮族/長者 (65 歲以上)</option>
+          </select>
+        </div>
+
+        <!-- Destination -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+            <i data-lucide="plane" class="w-4 h-4 text-blue-500"></i> 旅遊目的地
+          </label>
+          <select id="destInput" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="jp_kr">日韓專區 (安達享加碼/明台強項)</option>
+            <option value="asia">東南亞 / 中港澳</option>
+            <option value="eu_us">歐美 / 紐澳 / 高醫療費國家</option>
+            <option value="other">其他國家/地區</option>
+          </select>
+        </div>
+
+        <!-- Special Options (Toggles) -->
+        <div class="space-y-2">
+          <label class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+            <i data-lucide="sliders" class="w-4 h-4 text-blue-500"></i> 偏好保障偏好
+          </label>
+          <div class="space-y-1.5">
+            <label class="flex items-center space-x-2 text-xs text-slate-600 cursor-pointer">
+              <input type="checkbox" id="optCovid" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+              <span>需含「法定傳染病」(新冠/流感)</span>
+            </label>
+            <label class="flex items-center space-x-2 text-xs text-slate-600 cursor-pointer">
+              <input type="checkbox" id="optDelay" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
+              <span>偏好高額「班機延誤給付」</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Tag Filters & Compare Dock -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <!-- Highlight Filter Chips -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">熱門情境篩選:</span>
+        <button onclick="filterByTag('all')" class="tag-btn bg-slate-900 text-white px-3 py-1.5 rounded-xl text-xs font-medium transition shadow-sm" data-tag="all">全部 (8家)</button>
+        <button onclick="filterByTag('cp')" class="tag-btn bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-medium transition" data-tag="cp">💡 CP值高/小資首選</button>
+        <button onclick="filterByTag('delay')" class="tag-btn bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-medium transition" data-tag="delay">✈️ 理賠最高/不便險強</button>
+        <button onclick="filterByTag('jpkr')" class="tag-btn bg-white hover:bg-pink-50 text-slate-700 hover:text-pink-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-medium transition" data-tag="jpkr">🌸 日韓神卡/專屬加碼</button>
+        <button onclick="filterByTag('elder')" class="tag-btn bg-white hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-medium transition" data-tag="elder">👵 帶長輩/醫療救助高</button>
+      </div>
+
+      <!-- Pinned Pin/Compare Info Bar -->
+      <div id="compareBar" class="hidden bg-blue-50 border border-blue-200 rounded-xl px-4 py-2 flex items-center justify-between space-x-4">
+        <span class="text-xs font-medium text-blue-800 flex items-center gap-1">
+          <i data-lucide="pin" class="w-3.5 h-3.5 text-blue-600"></i> 已釘選 <span id="pinnedCount" class="font-bold">0</span> 家比較中
+        </span>
+        <button onclick="clearPin()" class="text-xs text-blue-600 hover:text-blue-800 underline">清除釘選</button>
+      </div>
+    </div>
+
+    <!-- 3. Side-by-Side Comparison Matrix -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="table" class="w-5 h-5 text-indigo-600"></i> 8大產險條款橫向對比矩陣
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5">點擊各保險公司卡片可查看完整優缺點剖析與詳細條款</p>
+        </div>
+        <div class="text-xs text-slate-400 flex items-center gap-1">
+          <i data-lucide="arrow-right-left" class="w-3.5 h-3.5"></i> 可左右滑動表格
+        </div>
+      </div>
+
+      <div class="overflow-x-auto custom-scrollbar">
+        <table class="w-full text-left border-collapse min-w-[960px]">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase font-semibold">
+              <th class="p-4 w-44 sticky left-0 bg-slate-50 z-10 shadow-sm">保險公司 / 項目</th>
+              <th class="p-4 min-w-[140px]">保費預估 <br><span class="text-[10px] text-slate-400 font-normal">(依選取天數)</span></th>
+              <th class="p-4 min-w-[130px]">意外身故/失能</th>
+              <th class="p-4 min-w-[160px]">海外突發疾病醫療</th>
+              <th class="p-4 min-w-[180px]">班機延誤 (不便險)</th>
+              <th class="p-4 min-w-[150px]">行李延誤/損失</th>
+              <th class="p-4 min-w-[130px]">法定傳染病保障</th>
+              <th class="p-4 min-w-[140px]">海外緊急救援</th>
+              <th class="p-4 min-w-[110px] text-center">操作 / 詳細</th>
+            </tr>
+          </thead>
+          <tbody id="insuranceTableBody" class="divide-y divide-slate-100 text-sm">
+            <!-- Dynamic Insertion via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Quick Highlights Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 p-5 rounded-2xl">
+        <div class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-md shadow-emerald-200">
+          <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-base">高 CP 值小資推薦</h4>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          <strong class="text-emerald-700">新安東京海上</strong> 與 <strong class="text-emerald-700">中信產險</strong> 保費最平易近人，適合基礎防護與預算有限的短期亞洲旅遊。
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 p-5 rounded-2xl">
+        <div class="w-10 h-10 bg-amber-500 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-md shadow-amber-200">
+          <i data-lucide="plane-takeoff" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-base">廉航/轉機保障極強</h4>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          <strong class="text-amber-700">富邦產險</strong> 班機延誤給付門檻明確且賠款高，<strong class="text-amber-700">國泰產險</strong> 彈性高，適合常遇極端氣候或搭廉航者。
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 p-5 rounded-2xl">
+        <div class="w-10 h-10 bg-pink-500 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-md shadow-pink-200">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-base">日韓旅遊首選</h4>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          <strong class="text-pink-700">安達產險</strong> 在指定日韓美地區突發疾病自動額度升級；<strong class="text-pink-700">明台產險</strong> 具日資背景救援機制深厚。
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 p-5 rounded-2xl">
+        <div class="w-10 h-10 bg-indigo-500 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-md shadow-indigo-200">
+          <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-base">帶長輩/家庭出遊</h4>
+        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+          <strong class="text-indigo-700">南山產險</strong> 與 <strong class="text-indigo-700">台灣產險</strong> 海外突發疾病與急難救助醫療專機額度完備，旅遊安全網最紮實。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal for Company Detail -->
+  <div id="detailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100">
+      <div id="modalContent">
+        <!-- Dynamic content filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript App Logic -->
+  <script>
+    // 8 Major Insurance Companies Data
+    const insuranceData = [
+      {
+        id: "fubon",
+        name: "富邦產險",
+        tagline: "班機延誤理賠高、不便險項目最全",
+        tags: ["delay"],
+        basePricePerDay: 130, // Rough calculation factor
+        accidentCoverage: "500 萬",
+        medicalCoverage: "100 萬 (滿額可選)",
+        delayCoverage: "4小時 6,000元 / 累進最高1.2萬",
+        baggageCoverage: "行李延誤 6,000元 / 損失最高 3萬",
+        epidemic: "可選含/不含 (選擇多樣)",
+        rescue: "美金 50,000 (約150萬)",
+        pros: [
+          "不便險理賠條款相對寬鬆且定額金額高",
+          "班機延誤門檻4小時即達到顯著賠付",
+          "品牌知名度高，理賠申請據點多"
+        ],
+        cons: [
+          "整體投保費用高於市場平均約 15-20%",
+          "網路投保年齡與保額上限限制較多"
+        ],
+        bestFor: "重視班機延誤、行程變動風險與搭乘廉價航空者"
+      },
+      {
+        id: "cathay",
+        name: "國泰產險",
+        tagline: "投保介面順暢、甲乙型彈性選擇",
+        tags: ["delay", "cp"],
+        basePricePerDay: 115,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "80 - 100 萬",
+        delayCoverage: "4小時 5,000元 / 滿額最高 1萬",
+        baggageCoverage: "行李延誤 5,000元 / 損失 1.5萬",
+        epidemic: "可自選 (甲型含/乙型不含)",
+        rescue: "美金 30,000 (約90萬)",
+        pros: [
+          "線上投保試算介面極度優良且快速",
+          "自選是否包含法定傳染病，彈性省保費",
+          "客服評估與線上理賠進度追蹤便利"
+        ],
+        cons: [
+          "若選含法定傳染病，醫療保額上限稍受微調"
+        ],
+        bestFor: "喜歡彈性調整保障項目與追求快捷投保體驗者"
+      },
+      {
+        id: "tokio",
+        name: "新安東京海上",
+        tagline: "極高 CP 值、小資自由行必看",
+        tags: ["cp"],
+        basePricePerDay: 88,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "50 - 80 萬",
+        delayCoverage: "4小時 3,000 - 4,000元",
+        baggageCoverage: "行李延誤 3,000元 / 損失 1萬",
+        epidemic: "預設不含 (特定專案可附掛)",
+        rescue: "美金 30,000 (約90萬)",
+        pros: [
+          "保費為業界極具競爭力之價格",
+          "基本不便險與旅平險防護一應俱全"
+        ],
+        cons: [
+          "班機延誤與行李損失理賠金額較中規中矩",
+          "突發疾病高保額專案較少"
+        ],
+        bestFor: "注重預算、短程亞洲旅遊或小資族群"
+      },
+      {
+        id: "chubb",
+        name: "安達產險",
+        tagline: "美日韓指定地區醫療自動升級",
+        tags: ["jpkr", "elder"],
+        basePricePerDay: 125,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "100 萬 (日韓美加升級至150萬)",
+        delayCoverage: "4小時 5,000元",
+        baggageCoverage: "行李延誤 5,000元 / 損失 2萬",
+        epidemic: "包含法定傳染病醫療給付",
+        rescue: "美金 50,000 (約150萬)",
+        pros: [
+          "美/日/韓熱門旅遊國家突發疾病自動享額度升級",
+          "包含法定傳染病保障",
+          "外商全球救援網絡資源豐富"
+        ],
+        cons: [
+          "不便險理賠認證文件規範較嚴謹",
+          "線上投保流程步驟較多"
+        ],
+        bestFor: "前往日韓、歐美醫療費用較高昂國家之旅客"
+      },
+      {
+        id: "tfmi",
+        name: "台灣產險",
+        tagline: "包含個人責任險、保障範圍全面",
+        tags: ["elder"],
+        basePricePerDay: 105,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "100 萬",
+        delayCoverage: "4小時 3,000 - 5,000元",
+        baggageCoverage: "行李延誤 4,000元 / 損失 1.5萬",
+        epidemic: "包含法定傳染病",
+        rescue: "美金 30,000 (約90萬)",
+        pros: [
+          "豪華型包含個人責任險 (當地造成他人損害給付)",
+          "法定傳染病保障標示清晰"
+        ],
+        cons: [
+          "線上投保介面設計較偏傳統",
+          "行銷優惠活動較少"
+        ],
+        bestFor: "自由行自駕、帶孩童出門怕毀損飯店物品者"
+      },
+      {
+        id: "ctbc",
+        name: "中信產險",
+        tagline: "隨身財物防護佳、組合多元",
+        tags: ["cp"],
+        basePricePerDay: 95,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "80 萬",
+        delayCoverage: "4小時 4,000元",
+        baggageCoverage: "行李延誤 4,000元 / 隨身財物盜搶補償",
+        epidemic: "可加選傳染病附約",
+        rescue: "美金 30,000 (約90萬)",
+        pros: [
+          "附加隨身財物失竊/盜搶等額外保障",
+          "保費價格實惠"
+        ],
+        cons: [
+          "海外突發疾病最高保額上限略低於旗艦型"
+        ],
+        bestFor: "隨身攜帶較多電子產品或貴重個人物品者"
+      },
+      {
+        id: "nanshan",
+        name: "南山產險",
+        tagline: "醫療救援紮實、家庭出遊首選",
+        tags: ["elder"],
+        basePricePerDay: 120,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "100 萬",
+        delayCoverage: "4小時 4,000元 / 6小時加倍",
+        baggageCoverage: "行李延誤 4,000元 / 損失 2萬",
+        epidemic: "包含法定傳染病",
+        rescue: "美金 50,000 (高額救援專機支援)",
+        pros: [
+          "醫療救援運送上限額度高",
+          "返國住院後續保障明確",
+          "品牌老字號服務穩健"
+        ],
+        cons: [
+          "不便險條款變化較少，多為標準定額"
+        ],
+        bestFor: "帶長輩出遊、重視緊急醫療救援防護者"
+      },
+      {
+        id: "mingtai",
+        name: "明台產險",
+        tagline: "日資背景、日本旅遊救援資源深厚",
+        tags: ["jpkr"],
+        basePricePerDay: 110,
+        accidentCoverage: "500 萬",
+        medicalCoverage: "80 - 100 萬",
+        delayCoverage: "3小時/4小時 階梯式給付",
+        baggageCoverage: "行李延誤 5,000元 / 損失 1.5萬",
+        epidemic: "可選含傳染病方案",
+        rescue: "美金 30,000 (約90萬)",
+        pros: [
+          "日本在地支援體系完善 (日商三井住友海上集團背景)",
+          "延誤時間門檻設計彈性"
+        ],
+        cons: [
+          "試算流程中細部條款確認步驟較多"
+        ],
+        bestFor: "專程前往日本旅遊、偏好日系服務網絡者"
+      }
+    ];
+
+    // App State
+    let currentDays = 5;
+    let currentAge = "adult";
+    let currentDest = "jp_kr";
+    let filterTag = "all";
+    let pinnedIds = [];
+
+    // DOM Elements
+    const daysInput = document.getElementById("daysInput");
+    const daysDisplay = document.getElementById("daysDisplay");
+    const ageInput = document.getElementById("ageInput");
+    const destInput = document.getElementById("destInput");
+    const optCovid = document.getElementById("optCovid");
+    const optDelay = document.getElementById("optDelay");
+    const tableBody = document.getElementById("insuranceTableBody");
+    const compareBar = document.getElementById("compareBar");
+    const pinnedCount = document.getElementById("pinnedCount");
+    const detailModal = document.getElementById("detailModal");
+    const modalContent = document.getElementById("modalContent");
+
+    // Dynamic Premium Calculation Logic
+    function calcPremium(item) {
+      let base = item.basePricePerDay * currentDays;
+      
+      // Age Factor
+      if (currentAge === "senior") base *= 1.45;
+      else if (currentAge === "child") base *= 0.75;
+
+      // Destination Factor
+      if (currentDest === "eu_us") base *= 1.35;
+      else if (currentDest === "jp_kr") base *= 1.05;
+
+      // Option Add-ons
+      if (optCovid.checked) base += (currentDays * 15);
+      if (optDelay.checked) base += (currentDays * 12);
+
+      return Math.round(base);
+    }
+
+    // Render Table Rows
+    function renderTable() {
+      tableBody.innerHTML = "";
+
+      // Filter logic
+      let filtered = insuranceData.filter(item => {
+        if (filterTag === "all") return true;
+        return item.tags.includes(filterTag);
+      });
+
+      // Sort pinned item to top
+      filtered.sort((a, b) => {
+        const aPinned = pinnedIds.includes(a.id) ? 1 : 0;
+        const bPinned = pinnedIds.includes(b.id) ? 1 : 0;
+        return bPinned - aPinned;
+      });
+
+      filtered.forEach(item => {
+        const estPremium = calcPremium(item);
+        const isPinned = pinnedIds.includes(item.id);
+
+        const tr = document.createElement("tr");
+        tr.className = `hover:bg-blue-50/40 transition ${isPinned ? 'bg-blue-50/60 font-medium' : ''}`;
+
+        tr.innerHTML = `
+          <td class="p-4 sticky left-0 bg-white shadow-sm z-10 border-r border-slate-100">
+            <div class="flex items-center space-x-2">
+              <button onclick="togglePin('${item.id}')" class="text-slate-300 hover:text-amber-500 transition ${isPinned ? 'text-amber-500' : ''}" title="釘選比較">
+                <i data-lucide="pin" class="w-4 h-4 ${isPinned ? 'fill-amber-500' : ''}"></i>
+              </button>
+              <div>
+                <div class="font-bold text-slate-900">${item.name}</div>
+                <div class="text-[11px] text-slate-500 font-normal truncate max-w-[120px]">${item.tagline}</div>
+              </div>
+            </div>
+          </td>
+          <td class="p-4">
+            <span class="text-base font-extrabold text-blue-700">NT$ ${estPremium.toLocaleString()}</span>
+          </td>
+          <td class="p-4 text-slate-700">${item.accidentCoverage}</td>
+          <td class="p-4 text-slate-700 font-medium">${item.medicalCoverage}</td>
+          <td class="p-4 text-slate-700">
+            <span class="inline-block px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 rounded text-xs">
+              ${item.delayCoverage}
+            </span>
+          </td>
+          <td class="p-4 text-slate-600 text-xs">${item.baggageCoverage}</td>
+          <td class="p-4 text-xs">
+            <span class="${item.epidemic.includes('含') ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-slate-600 bg-slate-100'} px-2 py-0.5 rounded border">
+              ${item.epidemic}
+            </span>
+          </td>
+          <td class="p-4 text-slate-600 text-xs">${item.rescue}</td>
+          <td class="p-4 text-center">
+            <button onclick="openDetail('${item.id}')" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
+              <span>詳情</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+
+        tableBody.appendChild(tr);
+      });
+
+      // Update Lucide Icons
+      lucide.createIcons();
+      updateCompareBar();
+    }
+
+    // Toggle Pin Function
+    function togglePin(id) {
+      if (pinnedIds.includes(id)) {
+        pinnedIds = pinnedIds.filter(item => item !== id);
+      } else {
+        if (pinnedIds.length >= 4) {
+          alert("最多可釘選 4 家保險公司進行對比");
+          return;
+        }
+        pinnedIds.push(id);
+      }
+      renderTable();
+    }
+
+    function clearPin() {
+      pinnedIds = [];
+      renderTable();
+    }
+
+    function updateCompareBar() {
+      if (pinnedIds.length > 0) {
+        compareBar.classList.remove("hidden");
+        pinnedCount.textContent = pinnedIds.length;
+      } else {
+        compareBar.classList.add("hidden");
+      }
+    }
+
+    // Filter Buttons logic
+    function filterByTag(tag) {
+      filterTag = tag;
+      document.querySelectorAll(".tag-btn").forEach(btn => {
+        if (btn.dataset.tag === tag) {
+          btn.className = "tag-btn bg-slate-900 text-white px-3 py-1.5 rounded-xl text-xs font-medium transition shadow-sm";
+        } else {
+          btn.className = "tag-btn bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-medium transition";
+        }
+      });
+      renderTable();
+    }
+
+    // Modal Details
+    function openDetail(id) {
+      const item = insuranceData.find(x => x.id === id);
+      if (!item) return;
+
+      const estPremium = calcPremium(item);
+
+      modalContent.innerHTML = `
+        <div class="p-6 space-y-6">
+          <div class="flex justify-between items-start pb-4 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">產險詳細評析</span>
+              <h3 class="text-2xl font-extrabold text-slate-900 mt-2">${item.name}</h3>
+              <p class="text-sm text-slate-500">${item.tagline}</p>
+            </div>
+            <button onclick="closeDetail()" class="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Estimated Price Banner -->
+          <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="text-xs text-blue-100">依目前設定條件估算保費</div>
+              <div class="text-2xl font-black">NT$ ${estPremium.toLocaleString()}</div>
+            </div>
+            <div class="text-xs bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
+              ${currentDays} 天 / ${currentAge === 'adult' ? '成人' : currentAge === 'child' ? '孩童' : '長者'}
+            </div>
+          </div>
+
+          <!-- Pros & Cons -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-emerald-50/60 border border-emerald-100 p-4 rounded-xl">
+              <h4 class="font-bold text-emerald-800 text-sm flex items-center gap-1.5 mb-2">
+                <i data-lucide="thumbs-up" class="w-4 h-4 text-emerald-600"></i> 主要優勢 / 亮點
+              </h4>
+              <ul class="space-y-1.5 text-xs text-slate-700 list-disc list-inside">
+                ${item.pros.map(p => `<li>${p}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="bg-rose-50/60 border border-rose-100 p-4 rounded-xl">
+              <h4 class="font-bold text-rose-800 text-sm flex items-center gap-1.5 mb-2">
+                <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600"></i> 注意事項 / 投保考量
+              </h4>
+              <ul class="space-y-1.5 text-xs text-slate-700 list-disc list-inside">
+                ${item.cons.map(c => `<li>${c}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Best for recommendation -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-semibold text-slate-500">適合族群推薦</div>
+            <div class="text-sm font-bold text-slate-800 mt-1">${item.bestFor}</div>
+          </div>
+
+          <!-- Coverage Checklist Grid -->
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 text-sm">保障條款速覽</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">意外身故</div>
+                <div class="font-bold text-slate-800 mt-0.5">${item.accidentCoverage}</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">海外醫療</div>
+                <div class="font-bold text-slate-800 mt-0.5">${item.medicalCoverage}</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">班機延誤</div>
+                <div class="font-bold text-amber-700 mt-0.5">${item.delayCoverage}</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">行李損失/延誤</div>
+                <div class="font-bold text-slate-800 mt-0.5">${item.baggageCoverage}</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">法定傳染病</div>
+                <div class="font-bold text-slate-800 mt-0.5">${item.epidemic}</div>
+              </div>
+              <div class="p-3 bg-slate-50 rounded-lg">
+                <div class="text-slate-400">急難救助</div>
+                <div class="font-bold text-slate-800 mt-0.5">${item.rescue}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="closeDetail()" class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-semibold hover:bg-slate-800 transition">
+              關閉視窗
+            </button>
+          </div>
+        </div>
+      `;
+
+      detailModal.classList.remove("hidden");
+      lucide.createIcons();
+    }
+
+    function closeDetail() {
+      detailModal.classList.add("hidden");
+    }
+
+    // Event Listeners
+    daysInput.addEventListener("input", (e) => {
+      currentDays = parseInt(e.target.value);
+      daysDisplay.textContent = `${currentDays} 天`;
+      renderTable();
+    });
+
+    ageInput.addEventListener("change", (e) => {
+      currentAge = e.target.value;
+      renderTable();
+    });
+
+    destInput.addEventListener("change", (e) => {
+      currentDest = e.target.value;
+      renderTable();
+    });
+
+    optCovid.addEventListener("change", renderTable);
+    optDelay.addEventListener("change", renderTable);
+
+    // Close Modal on backdrop click
+    detailModal.addEventListener("click", (e) => {
+      if (e.target === detailModal) closeDetail();
+    });
+
+    // Initial Load
+    window.onload = function() {
+      renderTable();
+      lucide.createIcons();
+    };
+  </script>
+</body>
+</html>
